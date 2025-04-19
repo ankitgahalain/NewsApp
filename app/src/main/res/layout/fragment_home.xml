@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +10,7 @@
         android:padding="16dp">
 
         <TextView
-            android:text="Top Stories"
+            android:text="@string/top_stories"
             android:textSize="20sp"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:orientation="horizontal"/>
 
         <TextView
-            android:text="News"
+            android:text="@string/news"
             android:textSize="20sp"
             android:layout_marginTop="16dp"
             android:layout_height="wrap_content"
@@ -40,4 +40,4 @@
             android:overScrollMode="never"/>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

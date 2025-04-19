@@ -1,8 +1,5 @@
 package com.example.newsapp.fragment;
 
-import static android.content.ContentValues.TAG;
-import static java.lang.Math.log;
-
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -13,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.newsapp.R;
 import com.example.newsapp.adapter.NewsAdapter;
@@ -65,7 +61,7 @@ public class HomeFragment extends Fragment {
                     "https://yavuzceliker.github.io/sample-images/image-"+i+".jpg",
                     "Description for " + prefix + " " + i
             ));
-            Log.d(TAG, "getDummyNews: "+prefix+" "+i);
+            Log.d("getDummyNews", "getDummyNews: "+prefix+" "+i);
         }
         return list;
     }

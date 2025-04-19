@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">News App</string>
+    <string name="news_story_image">News Story Image</string>
+    <string name="top_story_news_image">Top Story News Image</string>
+    <string name="related_stories">Related Stories</string>
+    <string name="zoomed_image_for_detailed_story_view">Zoomed Image for Detailed Story View</string>
+    <string name="top_stories">Top Stories</string>
+    <string name="news">News</string>
 </resources>

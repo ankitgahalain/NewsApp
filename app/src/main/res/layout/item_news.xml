@@ -16,6 +16,7 @@
             android:id="@+id/image_news"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:contentDescription="@string/news_story_image"
             android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
