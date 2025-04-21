@@ -4,20 +4,19 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.newsapp.R;
 import com.example.newsapp.adapter.NewsAdapter;
 import com.example.newsapp.adapter.TopStoriesAdapter;
 import com.example.newsapp.model.NewsItem;
+import java.util.Random;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +74,7 @@ public class HomeFragment extends Fragment {
         for (int i = 1; i <= count; i++) {
             list.add(new NewsItem(
                     prefix + " " + i,
-                    "https://yavuzceliker.github.io/sample-images/image-"+i+".jpg",
+                    "https://yavuzceliker.github.io/sample-images/image-" + new Random().nextInt(500) + ".jpg",
                     "Description for " + prefix + " " + i
             ));
             Log.d("getDummyNews", "getDummyNews: "+prefix+" "+i);

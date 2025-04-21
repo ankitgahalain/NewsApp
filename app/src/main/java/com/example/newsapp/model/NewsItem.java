@@ -1,7 +1,9 @@
 package com.example.newsapp.model;
 
 public class NewsItem {
-    private String title, imageUrl, description;
+    private final String title;
+    private final String imageUrl;
+    private final String description;
 
     public NewsItem(String title, String imageUrl, String description) {
         this.title = title;

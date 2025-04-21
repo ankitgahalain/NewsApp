@@ -14,13 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.newsapp.R;
-import com.example.newsapp.adapter.NewsAdapter;
 import com.example.newsapp.adapter.RelatedNewsAdapter;
 import com.example.newsapp.model.NewsItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DetailFragment extends Fragment {
 
@@ -71,7 +71,7 @@ public class DetailFragment extends Fragment {
         titleView.setText(title);
         descriptionView.setText(description);
 
-        List<NewsItem> relatedNews = getDummyRelatedNews(title, 4);
+        List<NewsItem> relatedNews = getDummyRelatedNews(title);
 
         relatedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         relatedRecyclerView.setAdapter(new RelatedNewsAdapter(relatedNews, item -> {
@@ -84,12 +84,12 @@ public class DetailFragment extends Fragment {
         }));
     }
 
-    private List<NewsItem> getDummyRelatedNews(String baseTitle, int count) {
+    private List<NewsItem> getDummyRelatedNews(String baseTitle) {
         List<NewsItem> list = new ArrayList<>();
-        for (int i = 1; i <= count; i++) {
+        for (int i = 1; i <= 4; i++) {
             list.add(new NewsItem(
                     baseTitle + " - Related " + i,
-                    "https://yavuzceliker.github.io/sample-images/image-"+(i+20)+".jpg",
+                    "https://yavuzceliker.github.io/sample-images/image-" + new Random().nextInt(500) + ".jpg",
                     "This is related news item " + i
             ));
         }
