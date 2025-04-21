@@ -4,12 +4,15 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.newsapp.R;
 import com.example.newsapp.adapter.NewsAdapter;
@@ -22,6 +25,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     RecyclerView rvTopStories, rvNews;
+    ImageButton btnScrollLeft, btnScrollRight;
 
     public HomeFragment() {}
 
@@ -30,6 +34,9 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        btnScrollLeft = view.findViewById(R.id.btn_scroll_left);
+        btnScrollRight = view.findViewById(R.id.btn_scroll_right);
+
         rvTopStories = view.findViewById(R.id.rv_top_stories);
         rvNews = view.findViewById(R.id.rv_news);
 
@@ -37,7 +44,7 @@ public class HomeFragment extends Fragment {
         List<NewsItem> news = getDummyNews("News",10);
 
         rvTopStories.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvNews.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvNews.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false));
 
         NewsAdapter.OnItemClickListener listener = item -> {
             Fragment detailFragment = DetailFragment.newInstance(item);
@@ -49,6 +56,16 @@ public class HomeFragment extends Fragment {
 
         rvTopStories.setAdapter(new TopStoriesAdapter(topStories, listener));
         rvNews.setAdapter(new NewsAdapter(news, listener));
+
+        btnScrollLeft.setOnClickListener(v -> {
+            LinearLayoutManager layoutManager = (LinearLayoutManager) rvTopStories.getLayoutManager();
+            layoutManager.smoothScrollToPosition(rvTopStories, new RecyclerView.State(), Math.max(0, layoutManager.findFirstVisibleItemPosition() - 1));
+        });
+
+        btnScrollRight.setOnClickListener(v -> {
+            LinearLayoutManager layoutManager = (LinearLayoutManager) rvTopStories.getLayoutManager();
+            layoutManager.smoothScrollToPosition(rvTopStories, new RecyclerView.State(), layoutManager.findLastVisibleItemPosition() + 1);
+        });
 
         return view;
     }

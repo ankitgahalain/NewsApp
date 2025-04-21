@@ -6,4 +6,5 @@
     <string name="zoomed_image_for_detailed_story_view">Zoomed Image for Detailed Story View</string>
     <string name="top_stories">Top Stories</string>
     <string name="news">News</string>
+    <string name="related_news_image">Related News Image</string>
 </resources>

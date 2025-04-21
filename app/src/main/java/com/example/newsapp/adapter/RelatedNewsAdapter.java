@@ -15,51 +15,48 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
+public class RelatedNewsAdapter extends RecyclerView.Adapter<RelatedNewsAdapter.RelatedNewsViewHolder> {
 
-    private List<NewsItem> newsList;
-    private OnItemClickListener listener;
+    private List<NewsItem> relatedNewsList;
 
-    public interface OnItemClickListener {
-        void onItemClick(NewsItem item);
-    }
+    private NewsAdapter.OnItemClickListener listener;
 
-    public NewsAdapter(List<NewsItem> newsList, OnItemClickListener listener) {
-        this.newsList = newsList;
+    public RelatedNewsAdapter(List<NewsItem> relatedNewsList, NewsAdapter.OnItemClickListener listener) {
+        this.relatedNewsList = relatedNewsList;
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
-        return new NewsViewHolder(view);
+    public RelatedNewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_related_news, parent, false);
+        return new RelatedNewsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-        NewsItem item = newsList.get(position);
+    public void onBindViewHolder(@NonNull RelatedNewsViewHolder holder, int position) {
+        NewsItem item = relatedNewsList.get(position);
         holder.bind(item, listener);
     }
 
     @Override
     public int getItemCount() {
-        return newsList.size();
+        return relatedNewsList.size();
     }
 
-    static class NewsViewHolder extends RecyclerView.ViewHolder {
+    class RelatedNewsViewHolder extends RecyclerView.ViewHolder {
         ImageView imageNews;
         TextView titleNews;
         TextView descriptionNews;
 
-        public NewsViewHolder(@NonNull View itemView) {
+        public RelatedNewsViewHolder(@NonNull View itemView) {
             super(itemView);
             imageNews = itemView.findViewById(R.id.image_news);
             titleNews = itemView.findViewById(R.id.title_news);
             descriptionNews = itemView.findViewById(R.id.description_news);
         }
 
-        public void bind(final NewsItem item, final OnItemClickListener listener) {
+        public void bind(final NewsItem item, NewsAdapter.OnItemClickListener listener) {
             titleNews.setText(item.getTitle());
             descriptionNews.setText(item.getDescription());
 
@@ -70,7 +67,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                     .into(imageNews);
 
 
-            itemView.setOnClickListener(v -> listener.onItemClick(item));
+            itemView.setOnClickListener(v -> RelatedNewsAdapter.this.listener.onItemClick(item));
         }
     }
 }
+

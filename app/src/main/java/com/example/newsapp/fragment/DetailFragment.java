@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.newsapp.R;
 import com.example.newsapp.adapter.NewsAdapter;
+import com.example.newsapp.adapter.RelatedNewsAdapter;
 import com.example.newsapp.model.NewsItem;
 import com.squareup.picasso.Picasso;
 
@@ -63,15 +64,17 @@ public class DetailFragment extends Fragment {
 
         ImageView imageView = view.findViewById(R.id.image_detail);
         TextView descriptionView = view.findViewById(R.id.text_description);
+        TextView titleView = view.findViewById(R.id.text_title);
         RecyclerView relatedRecyclerView = view.findViewById(R.id.rv_related);
 
         Picasso.get().load(imageUrl).into(imageView);
+        titleView.setText(title);
         descriptionView.setText(description);
 
         List<NewsItem> relatedNews = getDummyRelatedNews(title, 4);
 
         relatedRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        relatedRecyclerView.setAdapter(new NewsAdapter(relatedNews, item -> {
+        relatedRecyclerView.setAdapter(new RelatedNewsAdapter(relatedNews, item -> {
             // Navigate to another DetailFragment if needed
             Fragment newFragment = DetailFragment.newInstance(item);
             requireActivity().getSupportFragmentManager().beginTransaction()
